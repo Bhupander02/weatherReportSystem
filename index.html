@@ -7,7 +7,139 @@
     <link rel="stylesheet" href="./src/output.css" />
   </head>
   <body>
-    
+    <div class="min-h-screen flex flex-col md:flex-row gap-6 p-6 bg-slate-50">
+      <aside
+        id="recent-section"
+        class="w-full md:w-80 bg-white rounded-lg shadow-sm p-4 flex flex-col order-2 md:order-1"
+      >
+        <h2 class="text-lg font-semibold mb-3">Recent Searches</h2>
+        <ul
+          id="recent-list"
+          class="flex-1 overflow-auto space-y-2 text-sm text-slate-700"
+        ></ul>
+
+        <div class="mt-4 flex gap-2">
+          <button
+            id="clear-recent"
+            class="flex-1 bg-red-100 text-red-700 py-1 rounded text-sm"
+          >
+            Clear
+          </button>
+          <button
+            id="use-last"
+            class="flex-1 bg-blue-600 text-white py-1 rounded text-sm"
+          >
+            Use Last
+          </button>
+        </div>
+      </aside>
+
+      <main class="flex-1">
+        <div class="bg-white rounded-lg shadow-sm p-4 md:p-6">
+          <!-- Search -->
+          <form
+            id="search-form"
+            class="flex flex-col gap-2 mb-4 relative"
+            autocomplete="off"
+          >
+            <div class="flex gap-2">
+              <input
+                id="location-input"
+                name="location"
+                type="text"
+                placeholder="City name, ZIP, or lat,lon (e.g. London or 40.71,-74.01)"
+                class="flex-1 border rounded px-3 py-2 focus:outline-none focus:ring-2 focus-ring-sky-500"
+              />
+
+              <button
+                id="search-btn"
+                type="submit"
+                class="bg-sky-600 text-white px-4 rounded"
+              >
+                Search
+              </button>
+            </div>
+            <ul
+              id="dropdown-list"
+              class="absolute top-full left-0 right-0 bg-white border border-slate-200 rounded-b-md shadow-md mt-1 z-10 hidden max-h-48 overflow-auto text-sm text-slate-700"
+            ></ul>
+          </form>
+
+          <div
+            id="error"
+            class="text-red-600 text-sm mb-2"
+            role="status"
+            aria-live="polite"
+          ></div>
+          <div id="loader" class="text-sm text-slate-500 mb-2 hidden">
+            Loading...
+          </div>
+
+          <section id="weather-card" class="hidden">
+            <header class="flex items-center justify-between mb-3">
+              <div>
+                <h1 id="city" class="text-2xl font-bold"></h1>
+                <p id="country" class="text-sm text-slate-500"></p>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <img id="weather-icon" alt="weather icon" class="w-20 h-20" />
+                <div class="text-right">
+                  <div id="temp" class="text-4xl font-extrabold"></div>
+                  <div
+                    id="desc"
+                    class="text-sm text-slate-600 capitalize"
+                  ></div>
+                </div>
+              </div>
+            </header>
+
+            <div
+              class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-slate-700"
+            >
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Feels like</div>
+                <div id="feels" class="font-medium"></div>
+              </div>
+
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Humidity</div>
+                <div id="humidity" class="font-medium"></div>
+              </div>
+
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Pressure</div>
+                <div id="pressure" class="font-medium"></div>
+              </div>
+
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Wind</div>
+                <div id="wind" class="font-medium"></div>
+              </div>
+
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Sunrise</div>
+                <div id="sunrise" class="font-medium"></div>
+              </div>
+
+              <div class="bg-slate-50 p-3 rounded">
+                <div class="text-xs text-slate-500">Sunset</div>
+                <div id="sunset" class="font-medium"></div>
+              </div>
+            </div>
+
+            <footer class="mt-4 text-xs text-slate-500">
+              Last updated: <span id="updated"></span>
+            </footer>
+          </section>
+
+          <!-- Empty State -->
+          <div id="empty-state" class="text-slate-500 mt-6">
+            Try searching for a city or coordinates to see the weather report.
+          </div>
+        </div>
+      </main>
+    </div>
 
     <script src="script.js"></script>
   </body>
